@@ -10,10 +10,21 @@ plugins {
 
 dependencies {
     implementation("org.apache.commons:commons-text")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.17.2")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.2")
+    implementation("org.glassfish.jersey.core:jersey-server:3.1.5")
+    implementation("org.glassfish.jersey.containers:jersey-container-grizzly2-http:3.1.5")
+    implementation("org.glassfish.jersey.media:jersey-media-json-jackson:3.1.5")
+    implementation("org.glassfish.jersey.inject:jersey-hk2:3.1.5")
     implementation(project(":utilities"))
 }
 
 application {
     // Define the main class for the application.
     mainClass = "org.example.app.App"
+}
+
+tasks.test {
+    useJUnitPlatform()
 }

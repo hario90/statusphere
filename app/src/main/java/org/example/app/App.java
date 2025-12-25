@@ -4,9 +4,15 @@
 package org.example.app;
 
 import org.example.list.LinkedList;
+import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.server.ResourceConfig;
 
 import static org.example.utilities.StringUtils.join;
 import static org.example.utilities.StringUtils.split;
+
+import java.net.URI;
+
 import static org.example.app.MessageUtils.getMessage;
 
 import org.apache.commons.text.WordUtils;
@@ -17,5 +23,11 @@ public class App {
         tokens = split(getMessage());
         String result = join(tokens);
         System.out.println(WordUtils.capitalize(result));
+        ResourceConfig config = new ResourceConfig()
+            .packages("org.example.app"); 
+            // where your resources live 
+        HttpServer server = GrizzlyHttpServerFactory.createHttpServer( 
+            URI.create("http://0.0.0.0:8080/"), config ); 
+        System.out.println("Server running on http://localhost:8080/");
     }
 }
